@@ -1,0 +1,40 @@
+{
+    "PRODUCCION": {
+                    "USER": "aldopl"
+                    , "PASS":"Trns406053"
+                    , "HOST":"localhost"
+                    , "DATABASE":"pythonetl"
+                    , "RUTA_CBR": "/cbr/"
+                    , "RUTA_JPG": "/jpg/"
+                    , "RUTA_PDF": "/pdf/"
+                }
+               
+    , "DESARROLLO": {
+                    "USER": "aldopl"
+                    , "PASS":"Trns406053"
+                    , "HOST":"localhost"
+                    , "DATABASE":"pythonetl"
+                    , "RUTA_CBR": "/cbr/"
+                    , "RUTA_JPG": "/jpg/"
+                    , "RUTA_PDF": "/pdf/"
+                }
+    , "LOCAL": {
+                    "USER": "aldopl"
+                    , "PASS":"Trns406053"
+                    , "HOST":"localhost"
+                    , "DATABASE":"pythonetl"
+                    , "RUTA_CBR": "/cbr/"
+                    , "RUTA_JPG": "/jpg/"
+                    , "RUTA_PDF": "/pdf/"
+                }
+}
+
+
+
+
+
+
+
+
+
+
