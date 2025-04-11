@@ -99,10 +99,23 @@ class GestionArchivos():
         print('Error: {0}\nException message: {1}'.format(type(e).__name__, e))
 
 
-    def on_submit(self):
+    def start_converting(self):
         """Obtener List de archivos CBR"""
         comics = self.listFiles( RUTA = "/cbr", extension=".cbr", fullPath = False  )
         print(comics)
+        for comic in comics:
+            print (f"Comic: {comic}")
+        
+        self.setCBRFileName(comic)
+
+        self.unRarFileDownload(RUTA_ARCHIVO = "\cbr", RUTA_DESCARGA = "\jpg")
+        
+        #obtener una lista de todos los ficheros XML que hay dentro de la RUTA que se le envía por parámetro
+        imagenes = self.listFiles( RUTA = "\jpg", extension=".jpg", fullPath= True)
+        
+        """print(imagenes)"""
+        
+        self.createPDF(RUTA = "\pdf", imagenes= imagenes)
         pass
 
 
