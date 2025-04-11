@@ -98,7 +98,12 @@ class GestionArchivos():
        except Exception as e:
         print('Error: {0}\nException message: {1}'.format(type(e).__name__, e))
 
-                
+
+    def on_submit(self):
+        """Obtener List de archivos CBR"""
+        comics = self.listFiles( RUTA = "/cbr", extension=".cbr", fullPath = False  )
+        print(comics)
+        pass
 
 
 
