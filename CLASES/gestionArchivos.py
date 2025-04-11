@@ -77,20 +77,13 @@ class GestionArchivos():
             RUTA_DESCARGA =  self.RUTA_BASE + RUTA_DESCARGA
             self.crear_ruta_salida_si_no_existe(RUTA_DESCARGA)
             
-            Archive(RUTA_ARCHIVO + self.NOMBRE_FICHERO_DESCARGADO ).extractall( RUTA_DESCARGA )
+            Archive(f"{RUTA_ARCHIVO}\{self.NOMBRE_FICHERO_DESCARGADO}").extractall(RUTA_DESCARGA)
 
-    """
-    def unRarFileDownload(self, RUTA_DOWNLOAD, RUTA_DESCARGA ):
-        RUTA_DOWNLOAD =  self.RUTA_BASE + RUTA_DOWNLOAD
-        RUTA_DESCARGA =  self.RUTA_BASE + RUTA_DESCARGA
-        self.crear_ruta_salida_si_no_existe(RUTA_DESCARGA)
-        
-        Archive( RUTA_DOWNLOAD + self.NOMBRE_FICHERO_DESCARGADO ).extractall( RUTA_DESCARGA )
-    """    
+  
     
     def createPDF(self,RUTA, imagenes ):
-       pdfFileName = self.RUTA_BASE + RUTA + os.path.splitext(self.NOMBRE_FICHERO_DESCARGADO)[0] + ".pdf"
-       print(f"Pdf File Name: {pdfFileName} ")
+       pdfFileName = f"{self.RUTA_BASE}{RUTA}\{os.path.splitext(self.NOMBRE_FICHERO_DESCARGADO)[0]}.pdf"
+       print(f"Creating PDF File: {pdfFileName} ")
        pil_images = []
        try:
         for image in imagenes:
@@ -114,24 +107,8 @@ class GestionArchivos():
        except Exception as e:
         print('Error: {0}\nException message: {1}'.format(type(e).__name__, e))
 
-"""
-URL_PEDIDOS_DOWNLOAD = "http://datamanagement.es/Recursos/pedidos.rar"
-RUTA_DOWNLOAD = "C:/Users/Fran/Desktop/datamanagement/Python/EJEMPLO/DOWNLOAD/"
-RUTA_DESCARGA = "C:/Users/Fran/Desktop/datamanagement/Python/EJEMPLO/DATASOURCE/"
-gestionArchivos = GestionArchivos()
-gestionArchivos.downloadPedidosRarURL( URL_PEDIDOS_DOWNLOAD, RUTA_DOWNLOAD )
-gestionArchivos.unRarFileDownload( RUTA_DOWNLOAD, RUTA_DESCARGA )
-
-"""
                 
-"""   
-Probar que el método devuelve una lista de ficheros 
-gestionArchivos = GestionArchivos()
-lista = gestionArchivos.getFilesXMLFromOrigin( "C:/Users/Fran/Desktop/datamanagement/Python/EJEMPLO/DATASOURCE/" )
-    
 
-
-"""
 
 
 
