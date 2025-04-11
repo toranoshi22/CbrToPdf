@@ -1,7 +1,6 @@
 from CLASES.gestionArchivos import GestionArchivos
-import json
-import patoolib
-    
+
+
 
 gestionArchivos = GestionArchivos()
 

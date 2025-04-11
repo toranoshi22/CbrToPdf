@@ -1,17 +1,8 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Oct  9 13:00:27 2019
-
-pip install pyunpack
-pip install patool
-
-@author: Francisco Rodriguez Alfaro
-@email: info@datamanagement.es
-"""
 import os
 from pyunpack import Archive
 from PIL import Image
-import patoolib
+
 
 class GestionArchivos():
     
