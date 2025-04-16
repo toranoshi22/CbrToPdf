@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import tempfile
 from pyunpack import Archive
 from PIL import Image
 
@@ -30,8 +31,10 @@ class GestionArchivos():
     
       
     def listFiles( self, RUTA, extension, fullPath = True ):
+        if fullPath == False:
+            RUTA = self.RUTA_BASE + RUTA 
         imagenes = list()
-        RUTA =  self.RUTA_BASE + RUTA
+        print(f"Listfiles Ruta {RUTA}")
         for root, dirs, files in os.walk( RUTA ):
             for file in files:
                 if file.upper().endswith(extension.upper()):
@@ -65,7 +68,8 @@ class GestionArchivos():
 
     def unRarFileDownload(self, RUTA_ARCHIVO, RUTA_DESCARGA ):
             RUTA_ARCHIVO =  self.RUTA_BASE + RUTA_ARCHIVO
-            RUTA_DESCARGA =  self.RUTA_BASE + RUTA_DESCARGA
+            print(f"Unrar Ruta Archivo:{RUTA_ARCHIVO}")
+            print(f"Unrar Ruta Archivo:{RUTA_DESCARGA}")
             self.crear_ruta_salida_si_no_existe(RUTA_DESCARGA)
             
             Archive(f"{RUTA_ARCHIVO}\{self.NOMBRE_FICHERO_DESCARGADO}").extractall(RUTA_DESCARGA)
@@ -100,23 +104,24 @@ class GestionArchivos():
 
 
     def start_converting(self):
-        """Obtener List de archivos CBR"""
-        comics = self.listFiles( RUTA = "/cbr", extension=".cbr", fullPath = False  )
-        print(comics)
-        for comic in comics:
-            print (f"Comic: {comic}")
-        
-        self.setCBRFileName(comic)
+        with tempfile.TemporaryDirectory() as tmpdirname:
+            print('created temporary directory', tmpdirname)
+            """Obtener List de archivos CBR"""
+            comics = self.listFiles( RUTA = "/cbr", extension=".cbr", fullPath = False  )
+            print(comics)
+            for comic in comics:
+                print (f"Comic: {comic}")
+            
+                self.setCBRFileName(comic)
 
-        self.unRarFileDownload(RUTA_ARCHIVO = "\cbr", RUTA_DESCARGA = "\jpg")
-        
-        #obtener una lista de todos los ficheros XML que hay dentro de la RUTA que se le envía por parámetro
-        imagenes = self.listFiles( RUTA = "\jpg", extension=".jpg", fullPath= True)
-        
-        """print(imagenes)"""
-        
-        self.createPDF(RUTA = "\pdf", imagenes= imagenes)
-        pass
+                self.unRarFileDownload(RUTA_ARCHIVO = "\cbr", RUTA_DESCARGA = tmpdirname)
+            
+                imagenes = self.listFiles( RUTA = tmpdirname, extension=".jpg", fullPath= True)
+            
+                """print(imagenes)"""
+            
+                self.createPDF(RUTA = "\pdf", imagenes= imagenes)
+                
 
 
 
